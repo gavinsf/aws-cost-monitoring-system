@@ -1,2 +1,4 @@
 design.txt
-.tfvars
+*.tfvars
+.terraform
+.terraform.lock.hcl

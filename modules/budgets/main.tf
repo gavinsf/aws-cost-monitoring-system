@@ -1,9 +1,9 @@
 resource "aws_budgets_budget" "monthly_cost" {
-  name         = "budget_monthly"
+  name         = var.budget_name
   budget_type  = "COST"
-  limit_amount = "20"
+  limit_amount = var.budget_limit_amount
   limit_unit   = "USD"
-  time_unit    = "MONTHLY"
+  time_unit    = var.time_unit
 
   notification {
     comparison_operator        = "GREATER_THAN"
