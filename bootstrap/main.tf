@@ -7,6 +7,14 @@ terraform {
   }
 
   required_version = ">= 1.15"
+
+  backend "s3" {
+    bucket         = "budget-backend"
+    key            = "bootstrap/terraform.tfstate"
+    region         = "us-west-2"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
@@ -16,9 +24,9 @@ provider "aws" {
 resource "aws_s3_bucket" "tfstate" {
   bucket = var.bucket_name
 
-  #lifecycle {
-  #  prevent_destroy = true
-  #}
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket_versioning" "tfstate" {

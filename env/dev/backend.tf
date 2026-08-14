@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket         = "cost-monitoring-state-bucket"
-    key            = "terraform.tfstate"
-    region         = var.aws_region
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
+    bucket       = "budget-backend"
+    key          = "terraform.tfstate"
+    region       = "us-west-2"
+    use_lockfile = true
+    encrypt      = true
   }
 }
